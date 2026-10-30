@@ -11,7 +11,6 @@
       --red: #e10600;
       --red-dark: #b00000;
       --gray: #1a1a1a;
-      --border: #333;
     }
 
     * {
@@ -152,7 +151,7 @@
       background: #1a1a1a;
     }
 
-    button {
+    button, .btn {
       width: 100%;
       background: var(--red);
       color: var(--white);
@@ -165,25 +164,35 @@
       letter-spacing: 2px;
       cursor: pointer;
       transition: background 0.15s;
+      text-decoration: none;
+      display: block;
+      text-align: center;
     }
 
-    button:hover {
+    button:hover, .btn:hover {
       background: var(--red-dark);
     }
 
     .wynik {
       display: none;
-      margin-top: 30px;
-      padding: 24px;
-      border: 3px solid var(--red);
       text-align: center;
-      font-size: 1.2rem;
-      font-weight: 700;
-      text-transform: uppercase;
     }
 
     .wynik.show {
       display: block;
+    }
+
+    .wynik h2 {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .wynik p {
+      font-family: Arial, sans-serif;
+      font-size: 1.1rem;
+      margin-bottom: 28px;
+      opacity: 0.9;
     }
 
     footer {
@@ -221,6 +230,8 @@
   <main>
     <div class="container">
       <div class="ankieta-box">
+
+        <!-- Formularz -->
         <form id="ankieta" action="https://docs.google.com/forms/d/e/1FAIpQLSfTczZLxLYOHfywW_a3FMNtIWloqq4KJ_uf_K6A8oQLeFOKaQ/formResponse" method="POST" target="hidden_iframe" onsubmit="return handleSubmit()">
 
           <div class="pytanie">
@@ -254,9 +265,15 @@
           <button type="submit">WYŚLIJ ODPOWIEDZI</button>
         </form>
 
+        <!-- Komunikat po wysłaniu -->
         <div class="wynik" id="wynik">
-          Dziękujemy.<br>Twoje odpowiedzi zostały zapisane.
+          <h2>Dziękujemy</h2>
+          <p>Twoje odpowiedzi zostały zapisane.</p>
+          <a href="https://docs.google.com/forms/d/1YNqy_4xSTD3eD8Lsc42406RE0tQZU-pIjl30VkluWPI/viewanalytics" class="btn" target="_blank">
+            ZOBACZ WYNIKI
+          </a>
         </div>
+
       </div>
     </div>
   </main>
@@ -272,9 +289,9 @@
   <script>
     function handleSubmit() {
       setTimeout(function() {
-        document.getElementById('wynik').classList.add('show');
         document.getElementById('ankieta').style.display = 'none';
-      }, 600);
+        document.getElementById('wynik').classList.add('show');
+      }, 700);
       return true;
     }
   </script>
